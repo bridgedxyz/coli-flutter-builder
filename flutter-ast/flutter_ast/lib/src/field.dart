@@ -144,7 +144,9 @@ DartProperty _processProperty(FormalParameter node) {
 }
 
 DartField _process(VariableDeclarationListImpl node) {
-  late String _type, _name;
+  // bug fix when type is not set, this throws an exception for _type not being initialised
+  String? _type;
+  late String _name;
   for (final child in node.childEntities) {
     if (child is NamedTypeImpl) {
       final NamedTypeImpl _node = child;
